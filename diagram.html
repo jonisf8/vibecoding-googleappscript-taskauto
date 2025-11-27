@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GAS-TaskAutomation - Main Blocks Diagram</title>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2em; }
+    .mermaid { background: #fff; border-radius: 8px; padding: 1em; }
+  </style>
+</head>
+<body>
+  <h2>GAS-TaskAutomation: Main Solution Blocks</h2>
+    <p>A simplified Mermaid diagram of the main solution blocks. If you do not see a diagram below, ensure you are connected to the internet and using a modern browser that supports ES modules.</p>
+  B[Router: Classify & assign]
+  C[Worker: Do the task]
+  D[Reporting: Email & mark done]
+  flowchart TD
+  A[To-Do List: Fetch & filter tasks]
+  B[Router: Classify & assign]
+  C[Worker: Do the task]
+  D[Reporting: Email & mark done]
+  A --> B
+  B --> C
+  C --> D
+    </code></pre>
+    <p>If the diagram does not load, please check your internet connection or try using a different browser.</p>
+  </code></pre>
+</body>
+</html>
