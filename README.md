@@ -26,16 +26,67 @@ The solution is organized into several key blocks:
 1. Copy the contents of `src/Code.js` into your Google Apps Script project.
 2. Follow the comments in the code to configure and run your automation.
 
-## Project Structure
-
-- `src/Code.js` - Main script file
-- `README.md` - Project documentation
-- `LICENSE` - MIT License
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## Workflow Diagram
 
 To-Do List Analysis → Router Agent → Worker Agent → Result Handling & Reporting → Utilities & API Connectors
+
+## Repository Snapshot (2 February 2026)
+
+Current repository folder contents:
+
+- `.git/` (git metadata)
+- `LICENSE` - MIT License
+- `README.md` - Project documentation
+- `bckp/` (backup folder)
+- `src/`
+- `src/Code.js` - Main script file
+
+`src/` contains:
+
+- `Code.js`
+
+`bckp/` contains:
+
+- `Code_Experiments-GH300.js`
+
+## Setup
+
+- Prerequisites: a Google account with access to Google Tasks and Google Apps Script, `git` installed locally.
+- Clone the repository:
+
+```bash
+git clone https://github.com/jonisf8/vibecoding-googleappscript-taskauto.git
+cd vibecoding-googleappscript-taskauto
+```
+
+## Configuration
+
+- The script expects two Script Properties (set in Google Apps Script):
+	- `GEMINI_API_KEY` — API key for the Google Generative Language / Gemini API.
+	- `TASK_LIST_ID` — The Google Tasks list ID used by the automation.
+- Optional settings to review in `src/Code.js`:
+	- `modelId` — model used for generation (default `gemini-2.5-flash`).
+	- `maxTasks` / `rateLimitMs` — runtime limits to control load and pacing.
+
+## Deployment (Google Apps Script)
+
+1. Open https://script.google.com and create a new project.
+2. Copy the contents of `src/Code.js` into the Apps Script editor.
+3. In the Apps Script UI set the Script Properties (`Project Settings` → `Script properties`) for `GEMINI_API_KEY` and `TASK_LIST_ID`.
+4. Create a time-driven trigger for the `main` function (e.g., every 10 minutes) or run manually for testing.
+
+## Testing & Local Development
+
+- The project is primarily a Google Apps Script project and runs inside Google's environment. For local experimentation, review `src/Code.js` and use small helper scripts or mock responses.
+- Use `logTaskListIds()` to list available task lists while debugging in the Apps Script editor.
+
+## Contributing
+
+- Fork the repo, create a feature branch, and open a pull request.
+- Keep changes focused and include a short description of behavioral changes.
+- For significant changes, include a short testing note describing how to validate in Apps Script.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
