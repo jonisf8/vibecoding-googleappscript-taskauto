@@ -3,13 +3,18 @@
 
 _Last updated: 2 February 2026_
 
->A Google Apps Script project for automating tasks in Google Workspace using an agentic workflow.
+>A Google Apps Script project for automating tasks in Google Workspace using an agentic workflow with Gmail, Google Tasks and Gemini API endpoint.
 
 ## Features
 
-- Automate repetitive tasks in Google Sheets, Docs, or other Google Workspace apps
-- Intelligent task routing and execution using Google Gemini API
-- Email reporting and robust error handling
+- **Agentic Workflow**: Multi-agent system (Router and Worker) for intelligent task routing and execution
+- **Gmail Integration**: Automated email reporting of task results
+- **Google Tasks API**: Seamless task list management and updates
+- **Gemini API**: Advanced LLM capabilities for task analysis and execution
+- **Local Testing**: Comprehensive Jest test suite for development and CI/CD
+- **Error Handling**: Robust failure handling with detailed logging
+- **Configurable**: Easy setup via Script Properties and tunable parameters
+
 
 ## Workflow Overview
 
@@ -21,47 +26,14 @@ The solution is organized into several key blocks:
 4. **Result Handling & Reporting**: Sends an email report and marks the task as complete or failed, with robust error handling.
 5. **Utilities & API Connectors**: Helper functions for configuration, formatting, and API calls (e.g., Gemini, Gmail).
 
-## Usage
+To-Do List Analysis → Router Agent → Worker Agent → Result Handling & Reporting
 
-1. Copy the contents of `src/Code.js` into your Google Apps Script project.
-2. Follow the comments in the code to configure and run your automation.
+## Deployment (Google Apps Script)
 
-
-## Workflow Diagram
-
-To-Do List Analysis → Router Agent → Worker Agent → Result Handling & Reporting → Utilities & API Connectors
-
-## Repository Snapshot (2 February 2026)
-
-Current repository folder contents:
-
-- `.git/` (git metadata)
-- `LICENSE` - MIT License
-- `README.md` - Project documentation
-- `src/` - Source code
-  - `Code.js` - Main Google Apps Script implementation
-- `tests/` - Test suite (isolated testing environment)
-  - `Code.test.js` - Jest unit tests (21 tests)
-  - `utilities.js` - Exported utility functions for testing
-  - `jest.config.js` - Jest test configuration
-  - `TEST_SETUP.md` - Testing setup guide
-  - `package.json` - NPM dependencies for testing
-  - `package-lock.json` - Locked dependency versions
-  - `node_modules/` - Installed npm packages
-- `scripts/` - Helper scripts
-  - `test.sh` - Test runner (run from root: `./scripts/test.sh`)
-- `bckp/` - Backup folder
-  - `Code_Experiments-GH300.js`
-
-## Setup
-
-- Prerequisites: a Google account with access to Google Tasks and Google Apps Script, `git` installed locally.
-- Clone the repository:
-
-```bash
-git clone https://github.com/jonisf8/vibecoding-googleappscript-taskauto.git
-cd vibecoding-googleappscript-taskauto
-```
+1. Open https://script.google.com and create a new project.
+2. Copy the contents of `src/Code.js` into the Apps Script editor.
+3. In the Apps Script UI set the Script Properties (`Project Settings` → `Script properties`) for `GEMINI_API_KEY` and `TASK_LIST_ID`.
+4. Create a time-driven trigger for the `main` function (e.g., every 10 minutes) or run manually for testing.
 
 ## Configuration
 
@@ -72,41 +44,50 @@ cd vibecoding-googleappscript-taskauto
 	- `modelId` — model used for generation (default `gemini-2.5-flash`).
 	- `maxTasks` / `rateLimitMs` — runtime limits to control load and pacing.
 
-## Deployment (Google Apps Script)
+## Modifying the code - Quick start
 
-1. Open https://script.google.com and create a new project.
-2. Copy the contents of `src/Code.js` into the Apps Script editor.
-3. In the Apps Script UI set the Script Properties (`Project Settings` → `Script properties`) for `GEMINI_API_KEY` and `TASK_LIST_ID`.
-4. Create a time-driven trigger for the `main` function (e.g., every 10 minutes) or run manually for testing.
-
-## Testing & Local Development
-
-### Local Testing with Jest
-
-The project includes a comprehensive test suite using Jest for local development and CI/CD integration. See [tests/TEST_SETUP.md](tests/TEST_SETUP.md) for detailed testing documentation.
-
-**Quick Start:**
 ```bash
+# Clone the repository
+git clone https://github.com/jonisf8/vibecoding-googleappscript-taskauto.git
+cd vibecoding-googleappscript-taskauto
+
+# Run tests locally
 cd tests
 npm install
 npm test
-```
 
-**Or from root:**
-```bash
+# Or run from root
 ./scripts/test.sh
 ```
 
-**Test Coverage:**
-- 21 unit tests across 6 test suites
-- URL detection, title preprocessing, task filtering, string cleaning, markdown conversion, and JSON parsing
-- All tests pass with zero external dependencies required
+## Repository Structure
 
-### Google Apps Script Debugging
+Current repository folder contents:
 
-- Copy `src/Code.js` into Google Apps Script editor for cloud deployment
-- Use `logTaskListIds()` in the Apps Script editor to list available task lists while debugging
-- For rapid iteration: test utilities locally with Jest, then deploy to Apps Script
+```
+vibecoding-googleappscript-taskauto/
+├── .git/                          # Git metadata
+├── LICENSE                        # MIT License
+├── README.md                      # Project documentation
+├── src/
+│   └── Code.js                   # Main Google Apps Script implementation
+├── tests/                         # Test suite (isolated environment)
+│   ├── Code.test.js              # Jest unit tests (21 tests)
+│   ├── utilities.js              # Testable utility functions
+│   ├── jest.config.js            # Jest configuration
+│   ├── TEST_SETUP.md             # Testing setup guide
+│   ├── package.json              # NPM dependencies
+│   ├── package-lock.json         # Locked versions
+│   └── node_modules/             # Installed packages
+├── scripts/
+│   └── test.sh                   # Test runner wrapper
+└── bckp/
+    └── Code_Experiments-GH300.js # Backup/experimental code
+```
+
+## Testing & Local Development
+
+The project includes a comprehensive test suite using Jest for local development and CI/CD integration. See [tests/TEST_SETUP.md](tests/TEST_SETUP.md) for detailed testing documentation.
 
 ## Contributing
 
