@@ -28,34 +28,34 @@ npm run test:coverage
 ## Test Output Example
 
 ```
- PASS  src/Code.test.js
+ PASS  tests/Code.test.js
   URL Detection
-    ✓ detects HTTPS URLs (2 ms)
-    ✓ detects HTTP URLs (1 ms)
+    ✓ detects HTTPS URLs (1 ms)
+    ✓ detects HTTP URLs
     ✓ rejects non-URL strings (1 ms)
   Title Preprocessing
-    ✓ handles long URLs by extracting hostname (1 ms)
-    ✓ truncates long text to 80 characters (1 ms)
-    ✓ preserves short titles unchanged (1 ms)
-    ✓ handles malformed URLs gracefully (1 ms)
+    ✓ handles long URLs by extracting hostname
+    ✓ truncates long text to 80 characters
+    ✓ preserves short titles unchanged
+    ✓ handles malformed URLs gracefully
   Simple Task Detection
     ✓ identifies tasks with skip keywords (1 ms)
-    ✓ allows complex tasks without skip keywords (1 ms)
-    ✓ is case-insensitive (1 ms)
+    ✓ allows complex tasks without skip keywords
+    ✓ is case-insensitive
   String Cleaning
-    ✓ removes non-ASCII characters (1 ms)
-    ✓ trims whitespace (1 ms)
-    ✓ handles empty strings (1 ms)
+    ✓ removes non-ASCII characters
+    ✓ trims whitespace
+    ✓ handles empty strings
   Markdown to HTML Conversion
     ✓ converts headers to HTML (1 ms)
-    ✓ converts bold text (1 ms)
-    ✓ converts bullet lists (1 ms)
-    ✓ handles complex markdown (1 ms)
+    ✓ converts bold text
+    ✓ converts bullet lists
+    ✓ handles complex markdown
   Router Response Parsing
-    ✓ parses valid JSON responses (1 ms)
-    ✓ handles JSON wrapped in code blocks (1 ms)
-    ✓ provides fallback for invalid JSON (1 ms)
-    ✓ has consistent fallback structure (1 ms)
+    ✓ parses valid JSON responses
+    ✓ handles JSON wrapped in code blocks
+    ✓ provides fallback for invalid JSON
+    ✓ has consistent fallback structure
 
 Test Suites: 1 passed, 1 total
 Tests:       20 passed, 20 total
@@ -65,18 +65,21 @@ Tests:       20 passed, 20 total
 
 ```
 vibecoding-googleappscript-taskauto/
-├── package.json              # Dependencies & scripts
-├── jest.config.js            # Jest configuration
+├── package.json              # Dependencies & scripts (at root)
 ├── src/
-│   ├── Code.js              # Original Google Apps Script code
+│   └── Code.js              # Original Google Apps Script code
+├── tests/
+│   ├── Code.test.js         # Jest tests
 │   ├── utilities.js         # Testable utility functions (exported)
-│   └── Code.test.js         # Jest tests
+│   └── jest.config.js       # Jest configuration
 └── bckp/
     └── Code_Experiments-GH300.js
 ```
 
 ## Notes
 
+- **package.json** is at the project root (required by npm)
+- **jest.config.js** is in the tests directory and configured to find tests there
 - **utilities.js** exports all testable functions so they can be imported in Jest
 - **Code.js** remains unchanged for Google Apps Script deployment
 - Tests use Jest's standard `describe()`, `test()`, and `expect()` syntax

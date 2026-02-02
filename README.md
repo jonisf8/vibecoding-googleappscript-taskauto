@@ -38,24 +38,17 @@ Current repository folder contents:
 - `.git/` (git metadata)
 - `LICENSE` - MIT License
 - `README.md` - Project documentation
-- `package.json` - NPM dependencies and scripts
-- `jest.config.js` - Jest test configuration
-- `TEST_SETUP.md` - Testing setup guide
-- `bckp/` (backup folder)
-- `src/`
-- `src/Code.js` - Main Google Apps Script
-- `src/utilities.js` - Testable utility functions
-- `src/Code.test.js` - Jest test suite (21 tests)
-
-`src/` contains:
-
-- `Code.js` - Main Google Apps Script implementation
-- `utilities.js` - Exported utility functions for testing
-- `Code.test.js` - Jest unit tests
-
-`bckp/` contains:
-
-- `Code_Experiments-GH300.js`
+- `package.json` - NPM dependencies and test scripts (at root level)
+- `package-lock.json` - Locked dependency versions
+- `src/` - Source code
+  - `Code.js` - Main Google Apps Script implementation
+- `tests/` - Test suite and configuration
+  - `Code.test.js` - Jest unit tests (21 tests)
+  - `utilities.js` - Exported utility functions for testing
+  - `jest.config.js` - Jest test configuration
+- `bckp/` - Backup folder
+  - `Code_Experiments-GH300.js`
+- `node_modules/` - NPM packages (generated, not in git)
 
 ## Setup
 
@@ -106,9 +99,14 @@ npm run test:coverage   # Generate coverage report
 - URL detection, title preprocessing, task filtering, string cleaning, markdown conversion, and JSON parsing
 - All tests pass with zero external dependencies required
 
-**Test Files:**
-- `src/Code.test.js` — Jest test suite
-- `src/utilities.js` — Testable utility functions (exported for Jest)
+**Test Structure:**
+```
+tests/
+├── Code.test.js      # Jest test suite
+├── utilities.js      # Testable utility functions (exported for Jest)
+├── jest.config.js    # Jest configuration
+└── package.json      # NPM dependencies and test scripts
+```
 
 ### Google Apps Script Debugging
 
