@@ -3,26 +3,27 @@
 ## Installation
 
 ```bash
+cd tests
 npm install
 ```
 
-This installs Jest and its dependencies.
+This installs Jest and its dependencies in the `/tests` directory.
 
 ## Running Tests
 
-**Run all tests:**
+**From root directory:**
 ```bash
-npm test
+./scripts/test.sh              # Run all tests
+./scripts/test.sh --watch      # Watch mode
+./scripts/test.sh --coverage   # Coverage report
 ```
 
-**Run tests in watch mode (auto-rerun on file changes):**
+**From tests directory:**
 ```bash
-npm run test:watch
-```
-
-**Run tests with coverage report:**
-```bash
-npm run test:coverage
+cd tests
+npm test                       # Run all tests
+npm run test:watch            # Watch mode
+npm run test:coverage         # Coverage report
 ```
 
 ## Test Output Example
@@ -65,22 +66,29 @@ Tests:       20 passed, 20 total
 
 ```
 vibecoding-googleappscript-taskauto/
-├── package.json              # Dependencies & scripts (at root)
 ├── src/
-│   └── Code.js              # Original Google Apps Script code
+│   └── Code.js                    # Original Google Apps Script code
 ├── tests/
-│   ├── Code.test.js         # Jest tests
-│   ├── utilities.js         # Testable utility functions (exported)
-│   └── jest.config.js       # Jest configuration
+│   ├── package.json               # NPM dependencies
+│   ├── package-lock.json          # Locked versions
+│   ├── node_modules/              # Installed packages
+│   ├── Code.test.js               # Jest tests
+│   ├── utilities.js               # Testable utility functions
+│   └── jest.config.js             # Jest configuration
+├── scripts/
+│   └── test.sh                    # Test runner wrapper (from root)
+├── README.md
+├── TEST_SETUP.md
 └── bckp/
     └── Code_Experiments-GH300.js
 ```
 
 ## Notes
 
-- **package.json** is at the project root (required by npm)
-- **jest.config.js** is in the tests directory and configured to find tests there
-- **utilities.js** exports all testable functions so they can be imported in Jest
-- **Code.js** remains unchanged for Google Apps Script deployment
+- **All testing dependencies are isolated in `/tests`** (package.json, node_modules, etc.)
+- **Run tests from root** using `./scripts/test.sh` or `cd tests && npm test`
+- **jest.config.js** is configured to find tests in the same directory
+- **utilities.js** exports all testable functions for Jest
+- **Code.js** remains in `/src` unchanged for Google Apps Script deployment
 - Tests use Jest's standard `describe()`, `test()`, and `expect()` syntax
 - All tests are isolated and don't require external APIs (no Gemini key needed)
