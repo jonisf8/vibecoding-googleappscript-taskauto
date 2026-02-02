@@ -38,13 +38,20 @@ Current repository folder contents:
 - `.git/` (git metadata)
 - `LICENSE` - MIT License
 - `README.md` - Project documentation
+- `package.json` - NPM dependencies and scripts
+- `jest.config.js` - Jest test configuration
+- `TEST_SETUP.md` - Testing setup guide
 - `bckp/` (backup folder)
 - `src/`
-- `src/Code.js` - Main script file
+- `src/Code.js` - Main Google Apps Script
+- `src/utilities.js` - Testable utility functions
+- `src/Code.test.js` - Jest test suite (21 tests)
 
 `src/` contains:
 
-- `Code.js`
+- `Code.js` - Main Google Apps Script implementation
+- `utilities.js` - Exported utility functions for testing
+- `Code.test.js` - Jest unit tests
 
 `bckp/` contains:
 
@@ -78,8 +85,36 @@ cd vibecoding-googleappscript-taskauto
 
 ## Testing & Local Development
 
-- The project is primarily a Google Apps Script project and runs inside Google's environment. For local experimentation, review `src/Code.js` and use small helper scripts or mock responses.
-- Use `logTaskListIds()` to list available task lists while debugging in the Apps Script editor.
+### Local Testing with Jest
+
+The project includes a comprehensive test suite using Jest for local development and CI/CD integration.
+
+**Setup:**
+```bash
+npm install
+```
+
+**Run tests:**
+```bash
+npm test                 # Run all tests once
+npm run test:watch      # Auto-rerun on file changes
+npm run test:coverage   # Generate coverage report
+```
+
+**Test Coverage:**
+- 21 unit tests across 6 test suites
+- URL detection, title preprocessing, task filtering, string cleaning, markdown conversion, and JSON parsing
+- All tests pass with zero external dependencies required
+
+**Test Files:**
+- `src/Code.test.js` — Jest test suite
+- `src/utilities.js` — Testable utility functions (exported for Jest)
+
+### Google Apps Script Debugging
+
+- Copy `src/Code.js` into Google Apps Script editor for cloud deployment
+- Use `logTaskListIds()` in the Apps Script editor to list available task lists while debugging
+- For rapid iteration: test utilities locally with Jest, then deploy to Apps Script
 
 ## Contributing
 
