@@ -1,6 +1,8 @@
 
 # GAS-TaskAutomation
 
+_Last updated: 2 February 2026_
+
 >A Google Apps Script project for automating tasks in Google Workspace using an agentic workflow.
 
 ## Features
@@ -33,3 +35,7 @@ The solution is organized into several key blocks:
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Workflow Diagram
+
+To-Do List Analysis → Router Agent → Worker Agent → Result Handling & Reporting → Utilities & API Connectors
