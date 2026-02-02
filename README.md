@@ -38,17 +38,20 @@ Current repository folder contents:
 - `.git/` (git metadata)
 - `LICENSE` - MIT License
 - `README.md` - Project documentation
-- `package.json` - NPM dependencies and test scripts (at root level)
-- `package-lock.json` - Locked dependency versions
 - `src/` - Source code
   - `Code.js` - Main Google Apps Script implementation
-- `tests/` - Test suite and configuration
+- `tests/` - Test suite (isolated testing environment)
   - `Code.test.js` - Jest unit tests (21 tests)
   - `utilities.js` - Exported utility functions for testing
   - `jest.config.js` - Jest test configuration
+  - `TEST_SETUP.md` - Testing setup guide
+  - `package.json` - NPM dependencies for testing
+  - `package-lock.json` - Locked dependency versions
+  - `node_modules/` - Installed npm packages
+- `scripts/` - Helper scripts
+  - `test.sh` - Test runner (run from root: `./scripts/test.sh`)
 - `bckp/` - Backup folder
   - `Code_Experiments-GH300.js`
-- `node_modules/` - NPM packages (generated, not in git)
 
 ## Setup
 
@@ -80,33 +83,24 @@ cd vibecoding-googleappscript-taskauto
 
 ### Local Testing with Jest
 
-The project includes a comprehensive test suite using Jest for local development and CI/CD integration.
+The project includes a comprehensive test suite using Jest for local development and CI/CD integration. See [tests/TEST_SETUP.md](tests/TEST_SETUP.md) for detailed testing documentation.
 
-**Setup:**
+**Quick Start:**
 ```bash
+cd tests
 npm install
+npm test
 ```
 
-**Run tests:**
+**Or from root:**
 ```bash
-npm test                 # Run all tests once
-npm run test:watch      # Auto-rerun on file changes
-npm run test:coverage   # Generate coverage report
+./scripts/test.sh
 ```
 
 **Test Coverage:**
 - 21 unit tests across 6 test suites
 - URL detection, title preprocessing, task filtering, string cleaning, markdown conversion, and JSON parsing
 - All tests pass with zero external dependencies required
-
-**Test Structure:**
-```
-tests/
-├── Code.test.js      # Jest test suite
-├── utilities.js      # Testable utility functions (exported for Jest)
-├── jest.config.js    # Jest configuration
-└── package.json      # NPM dependencies and test scripts
-```
 
 ### Google Apps Script Debugging
 
