@@ -1,0 +1,17 @@
+{
+  "name": "vibecoding-task-automation",
+  "version": "1.0.0",
+  "description": "Agentic Workflow Router & Worker with unit tests",
+  "main": "src/Code.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "keywords": ["google-apps-script", "tasks", "automation", "gemini"],
+  "author": "Vibecoding",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
